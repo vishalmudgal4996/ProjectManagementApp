@@ -17,6 +17,10 @@ function showProjects() {
   });
 }
 
+function removeCards() {
+  document.getElementById("projectList").innerHTML = "";
+}
+
 function toggleMenu() {
   var toggleVariable = document.getElementsByClassName("menu-block")[0];
 

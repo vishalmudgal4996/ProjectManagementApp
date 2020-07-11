@@ -1,15 +1,20 @@
+var projectListObject = [{ name: "Project One" }, { name: "Project Two" }];
+
 showProjects();
 
 function showProjects() {
-  var template =
-    '<div class="project-card">' +
-    "<span>Project JavaScript</span>" +
-    "<ul>" +
-    " <li>Task One</li>" +
-    " <li>Task Two</li>" +
-    " </ul>" +
-    "</div>";
-  document.getElementById("projectList").innerHTML += template;
+  projectListObject.forEach(function (value, index) {
+    var template =
+      '<div class="project-card">' +
+      value.name +
+      "<ul>" +
+      " <li>Task One</li>" +
+      " <li>Task Two</li>" +
+      " </ul>" +
+      "</div>";
+
+    document.getElementById("projectList").innerHTML += template;
+  });
 }
 
 function toggleMenu() {

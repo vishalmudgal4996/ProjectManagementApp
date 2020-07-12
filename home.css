@@ -93,3 +93,14 @@ input {
   list-style-type: none;
   padding-inline-start: 0px;
 }
+
+* {
+  box-sizing: border-box;
+}
+@media only screen and (max-width: 400px) {
+  .board-block,
+  .project-block,
+  .project-card {
+    width: 100%;
+  }
+}

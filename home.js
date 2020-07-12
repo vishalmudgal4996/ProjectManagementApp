@@ -38,9 +38,9 @@ function addBoard(id) {
     '<section class="board-block" id=' +
     boardId +
     ">" +
-    "<div>" +
+    "<div class = 'section-div'>" +
     id.value +
-    '<button onclick="removeCards(' +
+    '<button class = "remove-btn" onclick="removeCards(' +
     listId +
     ')">Remove Card</button></div>' +
     '<div class="project-block" id= ' +

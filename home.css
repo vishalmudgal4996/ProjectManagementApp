@@ -34,7 +34,7 @@ input {
   padding: 10px;
   border: 0;
 }
-.input-board {
+.add-board-block {
   display: flex;
   flex-direction: row;
   justify-content: space-between;

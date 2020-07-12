@@ -31,10 +31,12 @@ function toggleMenu() {
   }
 }
 
-function addBoard() {
+function addBoard(id) {
   var templateBlock =
     "<section class='board-block'>" +
-    '<div>Board Name <button onclick="removeCards()">Remove Card</button></div>' +
+    "<div>" +
+    id.value +
+    '<button onclick="removeCards()">Remove Card</button></div>' +
     '<div class="project-block" id="projectList">' +
     "</div>" +
     "</section>";

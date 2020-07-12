@@ -18,20 +18,18 @@
         <div class="menu-block">Menu</div>
         <div class="board-container">
             <div class="add-board-block">
-                <div class="input-board">
-                    <input type="text" placeholder="e.g., new test board">
-                    <button id="add-board-btn">Add Board</button>
-                </div>
-                <section>
+                <input type="text" placeholder="e.g., new test board">
+                <button id="add-board-btn" onclick="addBoard()">Add Board</button>
+            </div>
+            <div id="boardBlockList">
+                <section class="board-block">
                     <div>Board Name <button onclick="removeCards()">Remove Card</button></div>
                     <div class="project-block" id='projectList'>
                     </div>
                 </section>
-
             </div>
         </div>
     </div>
-
     <script src="./home.js"></script>
 </body>
 

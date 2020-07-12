@@ -30,3 +30,14 @@ function toggleMenu() {
     toggleVariable.style.display = "none";
   }
 }
+
+function addBoard() {
+  var templateBlock =
+    "<section class='board-block'>" +
+    '<div>Board Name <button onclick="removeCards()">Remove Card</button></div>' +
+    '<div class="project-block" id="projectList">' +
+    "</div>" +
+    "</section>";
+
+  document.getElementById("boardBlockList").innerHTML += templateBlock;
+}

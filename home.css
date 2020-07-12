@@ -17,7 +17,8 @@ header {
   background-color: grey;
   /* padding: 5%; */
   color: white;
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
 }
 .board-container {
   width: 80%;
@@ -46,7 +47,7 @@ input {
   border-radius: 5px;
   margin: 10px 0;
   color: white;
-  width: 30%;
+  width: 25%;
 }
 .project-block {
   display: flex;
@@ -63,7 +64,7 @@ input {
   padding: 2%;
   font-size: 22px;
 }
-li {
+#menuListItems {
   margin-top: 20px;
   margin-bottom: 20px;
 }
@@ -78,4 +79,17 @@ li {
   padding: 7px;
   border: 0px;
   float: right;
+}
+.taskItem {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: white;
+  color: black;
+  padding: 5%;
+  font-size: medium;
+  font-weight: bolder;
+}
+.cardList {
+  list-style-type: none;
+  padding-inline-start: 0px;
 }

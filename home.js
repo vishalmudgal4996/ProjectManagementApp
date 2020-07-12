@@ -1,23 +1,16 @@
 var projectListObject = [{ name: "Project One" }, { name: "Project Two" }];
 
-showProjects();
-
 function showProjects(listId) {
   projectListObject.forEach(function (value, index) {
     var template =
       '<div class="project-card">' +
       value.name +
       "<ul>" +
-      " <li>Task One</li>" +
-      " <li>Task Two</li>" +
-      " </ul>" +
+      "<li>Task One</li>" +
+      "<li>Task Two</li>" +
+      "</ul>" +
       "</div>";
-
-    if (listId) {
-      document.getElementById(listId).innerHTML += template;
-    } else {
-      document.getElementById("projectList").innerHTML += template;
-    }
+    document.getElementById(listId).innerHTML += template;
   });
 }
 
@@ -40,24 +33,27 @@ var idName = 1;
 function addBoard(id) {
   idName++;
   var listId = "projectList_" + idName;
+  var boardId = "board_" + idName;
   var templateBlock =
-    "<section class='board-block'>" +
+    '<section class="board-block" id=' +
+    boardId +
+    ">" +
     "<div>" +
     id.value +
-    '<button onclick="removeCards()">Remove Card</button></div>' +
+    '<button onclick="removeCards(' +
+    listId +
+    ')">Remove Card</button></div>' +
     '<div class="project-block" id= ' +
     listId +
     ">" +
     "</div>" +
     "</section>";
-
   document.getElementById("boardBlockList").innerHTML += templateBlock;
   showProjects(listId);
   document.getElementById("menuList").innerHTML +=
-    '<li onclick = "loadMenu(' + listId + ')">' + id.value + "</li>";
+    '<li onclick = "loadMenu(' + boardId + ')">' + id.value + "</li>";
 }
 
 function loadMenu(element) {
-  console.log(element.id);
-  console.log(element);
+  document.getElementById(element.id).style.display = "block";
 }

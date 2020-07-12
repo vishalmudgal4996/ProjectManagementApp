@@ -54,3 +54,7 @@ input {
   justify-content: space-between;
   flex-wrap: wrap;
 }
+.board-block {
+  display: none;
+  margin-top: 3%;
+}

@@ -1,8 +1,8 @@
 var projectListObject = [{ name: "Project One" }, { name: "Project Two" }];
 
-showProjects();
+showProjects("projectList_1");
 
-function showProjects() {
+function showProjects(listID) {
   projectListObject.forEach(function (value, index) {
     var template =
       '<div class="project-card">' +
@@ -13,7 +13,7 @@ function showProjects() {
       " </ul>" +
       "</div>";
 
-    document.getElementById("projectList").innerHTML += template;
+    document.getElementById(listID).innerHTML += template;
   });
 }
 
@@ -31,15 +31,25 @@ function toggleMenu() {
   }
 }
 
+var idName = 1;
+
 function addBoard(id) {
+  idName++;
+
+  var listID = "projectList_" + idName;
+
   var templateBlock =
     "<section class='board-block'>" +
     "<div>" +
     id.value +
     '<button onclick="removeCards()">Remove Card</button></div>' +
-    '<div class="project-block" id="projectList">' +
+    '<div class="project-block" id= ' +
+    listID +
+    ">" +
     "</div>" +
     "</section>";
 
   document.getElementById("boardBlockList").innerHTML += templateBlock;
+
+  showProjects(listID);
 }

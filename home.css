@@ -74,7 +74,7 @@ input {
   font-weight: bolder;
   font-size: large;
 }
-.remove-btn {
+#remove-btn {
   background-color: red;
   color: white;
   padding: 7px;

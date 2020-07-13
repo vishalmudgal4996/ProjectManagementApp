@@ -62,6 +62,8 @@ function addBoard(id) {
     id.value +
     "</li>" +
     "<hr>";
+
+  document.getElementById(id.id).value = "";
 }
 
 function loadMenu(element) {

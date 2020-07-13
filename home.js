@@ -4,7 +4,9 @@ var projectListObject = [
   { name: "Project Three" },
 ];
 
-function showProjects(listId) {
+var boardList = [];
+
+function showProject(listId) {
   projectListObject.forEach(function (value, index) {
     var template =
       '<div class="project-card">' +
@@ -33,7 +35,7 @@ function toggleMenu() {
   }
 }
 
-var idName = 1;
+var idName = 0;
 
 function addBoard(id) {
   if (id.value.length < 5) {
@@ -48,9 +50,9 @@ function addBoard(id) {
     var listId = "projectList_" + idName;
     var boardId = "board_" + idName;
     var templateBlock =
-      '<section class="board-block" id=' +
+      '<section class="board-block" id="' +
       boardId +
-      ">" +
+      '"style = "display:none">' +
       "<div class = 'section-div'>" +
       id.value +
       '<button id = "remove-btn" onclick="removeCards(' +
@@ -61,20 +63,30 @@ function addBoard(id) {
       ">" +
       "</div>" +
       "</section>";
+    boardList.push({
+      list_id: listId,
+      board_id: boardId,
+      templateNew: templateBlock,
+    });
     document.getElementById("boardBlockList").innerHTML += templateBlock;
-    showProjects(listId);
+    showProject(listId);
     document.getElementById("menuList").innerHTML +=
-      '<li class= "menuListItems" onclick = "loadMenu(' +
+      "<li class = 'menuListItems' onClick=loadMenu('" +
       boardId +
-      ')">' +
+      "')>" +
       id.value +
-      "</li>" +
-      "<hr>";
-
-    document.getElementById(id.id).value = "";
+      "<hr></li>";
+    alert("Board Name: " + id.value + " added!");
+    id.value = id.defaultValue;
   }
 }
 
 function loadMenu(element) {
-  document.getElementById(element.id).style.display = "block";
+  for (var i = 0; i < boardList.length; i++) {
+    if (boardList[i].board_id == element) {
+      document.getElementById(boardList[i].board_id).style.display = "block";
+    } else {
+      document.getElementById(boardList[i].board_id).style.display = "none";
+    }
+  }
 }

@@ -18,8 +18,9 @@ function showProjects(listId) {
   });
 }
 
-function removeCards() {
-  document.getElementById("projectList").innerHTML = "";
+function removeCards(listId) {
+  var removeCard = document.getElementById(listId.id);
+  removeCard.innerHTML = "";
 }
 
 function toggleMenu() {

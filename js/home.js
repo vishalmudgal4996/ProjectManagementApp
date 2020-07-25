@@ -1,5 +1,4 @@
 var xhr = new XMLHttpRequest();
-getBoards();
 
 function getBoards() {
   xhr.open("GET", "http://localhost:8080/api/v1/boards");
@@ -15,6 +14,26 @@ function getBoards() {
         document.getElementById("boardBlockList").innerHTML +=
           "<p> " + value.name + "</p>";
       });
+    }
+  };
+}
+
+function addBoardAPI(element) {
+  var userDetail = JSON.parse(sessionStorage.getItem("user-detail"));
+  var params = {
+    description: "string",
+    name: element.value,
+    owner_id: userDetail.id,
+  };
+
+  xhr.open("POST", "http://localhost:8080/api/v1/boards");
+  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  var access = sessionStorage.getItem("access-token");
+  xhr.setRequestHeader("Authorization", "Bearer " + access);
+  xhr.send(JSON.stringify(params));
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      getBoards();
     }
   };
 }

@@ -1,0 +1,99 @@
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.menu-block {
+  width: 20%;
+  background-color: grey;
+  /* padding: 5%; */
+  color: white;
+  height: auto;
+  min-height: 100vh;
+}
+.board-container {
+  width: 80%;
+  padding: 4%;
+}
+input {
+  padding: 1%;
+  border: 1px solid;
+  width: 80%;
+}
+#add-board-btn {
+  background-color: green;
+  color: white;
+  padding: 10px;
+  border: 0;
+}
+.add-board-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.project-card {
+  background-color: grey;
+  padding: 2%;
+  border-radius: 5px;
+  margin: 10px 0;
+  color: white;
+  width: 25%;
+}
+.project-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.board-block {
+  display: none;
+  margin-top: 10%;
+}
+#menuList {
+  list-style-type: none;
+  padding: 2%;
+  font-size: 22px;
+}
+#menuListItems {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.section-div {
+  font-weight: bolder;
+  font-size: large;
+}
+#remove-btn {
+  background-color: red;
+  color: white;
+  padding: 7px;
+  border: 0px;
+  float: right;
+}
+.taskItem {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: white;
+  color: black;
+  padding: 5%;
+  font-size: medium;
+  font-weight: bolder;
+}
+.cardList {
+  list-style-type: none;
+  padding-inline-start: 0px;
+}
+
+* {
+  box-sizing: border-box;
+}
+@media only screen and (max-width: 400px) {
+  .board-block,
+  .project-block,
+  .project-card {
+    width: 100%;
+  }
+}

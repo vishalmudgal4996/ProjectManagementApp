@@ -10,11 +10,13 @@ function login(email, password) {
 }
 
 function sendRequest() {
+  console.log(xhr.readyState);
   if (xhr.readyState === 4) {
     sessionStorage.setItem("user-detail", xhr.responseText);
     sessionStorage.setItem(
       "access-token",
       xhr.getResponseHeader("access-token")
     );
+    window.location.href = "home.html";
   }
 }

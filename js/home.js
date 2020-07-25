@@ -1,6 +1,9 @@
 var xhr = new XMLHttpRequest();
 
 function getBoards() {
+  document.getElementById("boardBlockList").innerHTML = "";
+  document.getElementById("menuList").innerHTML = "";
+
   xhr.open("GET", "http://localhost:8080/api/v1/boards");
   xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
   var access = sessionStorage.getItem("access-token");
@@ -39,22 +42,26 @@ function getBoards() {
 
 function addBoardAPI(element) {
   var userDetail = JSON.parse(sessionStorage.getItem("user-detail"));
-  var params = {
-    description: "string",
-    name: element.value,
-    owner_id: userDetail.id,
-  };
+  if (userDetail.role.id == 105) {
+    alert("only admins allowed to perform this operation.");
+  } else {
+    var params = {
+      description: "string",
+      name: element.value,
+      owner_id: userDetail.id,
+    };
 
-  xhr.open("POST", "http://localhost:8080/api/v1/boards");
-  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-  var access = sessionStorage.getItem("access-token");
-  xhr.setRequestHeader("Authorization", "Bearer " + access);
-  xhr.send(JSON.stringify(params));
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-      getBoards();
-    }
-  };
+    xhr.open("POST", "http://localhost:8080/api/v1/boards");
+    xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    var access = sessionStorage.getItem("access-token");
+    xhr.setRequestHeader("Authorization", "Bearer " + access);
+    xhr.send(JSON.stringify(params));
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        getBoards();
+      }
+    };
+  }
 }
 
 function deleteBoard(id) {

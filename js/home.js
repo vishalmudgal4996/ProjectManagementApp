@@ -11,8 +11,21 @@ function getBoards() {
       var boardList = JSON.parse(xhr.responseText);
       var boards = boardList.boards;
       boards.forEach(function (value, index) {
-        document.getElementById("boardBlockList").innerHTML +=
-          "<p> " + value.name + "</p>";
+        var template =
+          "<div id=" +
+          value.id +
+          " onclick = showProjects('" +
+          value.id +
+          "')>" +
+          value.name +
+          "</div>";
+        document.getElementById("boardBlockList").innerHTML += template;
+        document.getElementById("menuList").innerHTML +=
+          "<li class = 'menuListItems' onClick=loadMenu('" +
+          value.id +
+          "')>" +
+          value.name +
+          "<hr></li>";
       });
     }
   };
@@ -38,26 +51,34 @@ function addBoardAPI(element) {
   };
 }
 
-var projectListObject = [
-  { name: "Project One" },
-  { name: "Project Two" },
-  { name: "Project Three" },
-];
-
 var boardList = [];
 
-function showProject(listId) {
-  projectListObject.forEach(function (value, index) {
-    var template =
-      '<div class="project-card">' +
-      value.name +
-      "<ul class = 'cardList'>" +
-      "<li class = 'taskItem'>Task One</li>" +
-      "<li class = 'taskItem'>Task Two</li>" +
-      "</ul>" +
-      "</div>";
-    document.getElementById(listId).innerHTML += template;
-  });
+function showProjects(listId) {
+  xhr.open(
+    "GET",
+    "http://localhost:8080/api/v1/boards/" + listId + "/projects"
+  );
+  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  var access = sessionStorage.getItem("access-token");
+  xhr.setRequestHeader("Authorization", "Bearer " + access);
+  xhr.send();
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      var projectList = JSON.parse(xhr.responseText);
+      var projects = projectList.projects;
+      projects.forEach(function (value, index) {
+        var template =
+          '<div class="project-card">' +
+          value.name +
+          "<ul class = 'cardList'>" +
+          "<li class = 'taskItem'>Task One</li>" +
+          "<li class = 'taskItem'>Task Two</li>" +
+          "</ul>" +
+          "</div>";
+        document.getElementById(listId).innerHTML += template;
+      });
+    }
+  };
 }
 
 function removeCards(listId) {

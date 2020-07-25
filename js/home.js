@@ -10,7 +10,11 @@ function getBoards() {
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
       var boardList = JSON.parse(xhr.responseText);
-      console.log(boardList.boards);
+      var boards = boardList.boards;
+      boards.forEach(function (value, index) {
+        document.getElementById("boardBlockList").innerHTML +=
+          "<p> " + value.name + "</p>";
+      });
     }
   };
 }

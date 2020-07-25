@@ -18,6 +18,12 @@ function getBoards() {
           value.id +
           "')>" +
           value.name +
+          "<button class='delete-btn' onclick=deleteBoard(" +
+          value.id.toString() +
+          ")> Delete Board</button>" +
+          "<button class='project-btn' onclick=addProject(" +
+          value.id.toString() +
+          ")> Add Project</button>" +
           "</div>";
         document.getElementById("boardBlockList").innerHTML += template;
         document.getElementById("menuList").innerHTML +=
@@ -47,6 +53,43 @@ function addBoardAPI(element) {
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4) {
       getBoards();
+    }
+  };
+}
+
+function deleteBoard(id) {
+  event.stopPropagation();
+  xhr.open("DELETE", "http://localhost:8080/api/v1/boards/" + id);
+  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  var access = sessionStorage.getItem("access-token");
+  xhr.setRequestHeader("Authorization", "Bearer " + access);
+  xhr.send();
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      document.getElementById(id).remove();
+    }
+  };
+}
+
+function addProject(id) {
+  event.stopPropagation();
+  var userDetail = JSON.parse(sessionStorage.getItem("user-detail"));
+  var params = {
+    description: "New Project via API",
+    end_date: new Date(),
+    name: "project hello",
+    owner_id: userDetail.id,
+    start_date: new Date(),
+  };
+
+  xhr.open("POST", "http://localhost:8080/api/v1/boards/" + id + "/projects");
+  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  var access = sessionStorage.getItem("access-token");
+  xhr.setRequestHeader("Authorization", "Bearer " + access);
+  xhr.send(JSON.stringify(params));
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4) {
+      console.log(xhr.response);
     }
   };
 }
